@@ -10,6 +10,20 @@ datasource db {
   url      = env("DATABASE_URL") // Ignore any squigles, red squigle deceives -Phil
 }
 
+model VerificationToken {
+  id         String   @id @default(auto()) @map("_id") @db.ObjectId 
+  identifier String? 
+  token      String   @unique
+  expires    DateTime
+}
+
+model PasswordResetToken {
+  id          String  @id @default(auto()) @map("_id") @db.ObjectId
+  identifier  String
+  token       String  @unique
+  expires     DateTime
+}
+
 model User {
   id           String   @id @default(auto()) @map("_id") @db.ObjectId
   firstName    String
@@ -19,6 +33,7 @@ model User {
   createdAt    DateTime @default(now())
   isAdmin      Boolean  @default(false)
   isAuthor     Boolean  @default(false)
+  ifVerified   Boolean  @default(false)
 
   cal_Goal Int @default(2000)
   cal_Prog Int @default(0)
