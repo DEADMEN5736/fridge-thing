@@ -249,12 +249,13 @@ export default function RecipeSearch() {
         time: 65,
       },
 
-
+      //the best recipe
       {
         id: 256,
         title: "Five Hundred Cigarettes",
         description: "A lot of tobacco.",
         ingredients: ["Tobacco"],
+        cal: -5000,
         p: 0,
         c: 0,
         f: 3,
