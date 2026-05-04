@@ -1,11 +1,18 @@
 "use client";
 
 export const colors = {
-  primary: '#2ecc71',
-  secondary: '#2c3e50',
-  textSecondary: '#7f8c8d',
-  background: '#ffffff',
-  border: '#ddd',
+  primary: '#2ecc71',      // Green
+  secondary: '#2c3e50',    // Dark Blue/Gray
+  textSecondary: '#7f8c8d',// Gray
+  background: '#ffffff',   // White
+  offWhite: '#f4f7f6',     // Page Background
+  lightBackground: '#f9f9f9', // Input/Card background
+  border: '#dddddd',
+  lightBorder: '#eeeeee',
+  error: '#ff3b30',        // Red for flash/delete
+  black: '#121212',        // Manga Filter Box
+  blackElevated: '#222222',// Tag buttons
+  blackBorder: '#333333',  // Filter Box border
 };
 
 export const sharedStyles = {
@@ -22,19 +29,19 @@ export const sharedStyles = {
     justifyContent: "center",
     alignItems: "flex-start",
     paddingLeft: "6%",
-    backgroundColor: "#ffffff",
+    backgroundColor: colors.background,
     zIndex: 2,
   },
   logoStyle: {
     fontFamily: "'Lexend', sans-serif",
     fontSize: "3rem",
-    color: "#2c3e50",
+    color: colors.secondary,
     marginBottom: "5px",
     fontWeight: "700"
   },
   subtitleStyle: {
     fontFamily: "'Lexend', sans-serif",
-    color: "#7f8c8d",
+    color: colors.textSecondary,
     marginBottom: "30px",
   },
   formGroup: {
@@ -48,16 +55,16 @@ export const sharedStyles = {
     fontSize: "14px",
     fontWeight: "600",
     marginBottom: "8px",
-    color: "#34495e",
+    color: "#34495e", // Slight variation of secondary
   },
   inputStyle: {
     fontFamily: "'Lexend', sans-serif",
     padding: "12px",
     width: "100%", 
     borderRadius: "6px",
-    color: "#2c3e50",
-    border: "1px solid #ddd",
-    backgroundColor: "#f9f9f9",
+    color: colors.secondary,
+    border: `1px solid ${colors.border}`,
+    backgroundColor: colors.lightBackground,
     boxSizing: "border-box",
   },
   rightColumn: {
@@ -65,28 +72,31 @@ export const sharedStyles = {
     backgroundImage: "url('/background.png')",
     backgroundSize: "cover",
     backgroundPosition: "center",
-    backgroundColor: "#16171d",
+    backgroundColor: "#16171d", // Specific dark background for images
   },
-  buttonStyle: (bgColor = colors.primary) => ({
-    padding: "12px 30px",
-    width: "325px",
+  buttonStyle: (bgColor = colors.primary, custom = {}) => ({
+    padding: custom.padding || "12px 30px",
+    width: custom.width || "325px",
     backgroundColor: bgColor,
-    color: "white",
+    color: colors.background,
     border: "none",
-    borderRadius: "6px",
+    borderRadius: custom.borderRadius || "6px",
     cursor: "pointer",
     fontFamily: "'Lexend', sans-serif",
     fontWeight: "bold",
-    fontSize: "16px",
+    fontSize: custom.fontSize || "16px",
     marginBottom: "10px",
+    display: "flex",
+    alignItems: "center",
+    justifyContent: "center",
   }),
   secondaryBtnStyle: {
     padding: "12px",
     width: "325px",
     borderRadius: "6px",
-    border: "1px solid #ddd",
-    backgroundColor: "white",
-    color: "#2c3e50",
+    border: `1px solid ${colors.border}`,
+    backgroundColor: colors.background,
+    color: colors.secondary,
     cursor: "pointer",
     fontFamily: "'Lexend', sans-serif",
     fontSize: "14px",
@@ -97,8 +107,64 @@ export const sharedStyles = {
     boxSizing: "border-box",
   },
   dashboardWrapper: {
-    backgroundColor: '#f4f7f6',
+    backgroundColor: colors.offWhite,
+    minHeight: '100vh',
+    display: 'flex',
+    width: '100vw',
+    flexDirection: "column",
+  },
+  onboardingWrapper: {
+    backgroundColor: colors.offWhite,
     minHeight: '100vh',
     width: '100vw',
-},
+    display: "flex",
+    flexDirection: "column",
+    alignItems: "center",
+    justifyContent: "center",
+    paddingBottom: "200px",
+    overflow: 'hidden',
+  },
+  searchContainer: {
+    display: 'flex',
+    justifyContent: 'center',
+    padding: '30px 40px 10px 40px',
+    width: '100%',
+    flexShrink: 0,
+    position: 'relative',
+  },
+  searchBar: {
+    width: '100%',
+    maxWidth: '650px',
+    padding: '14px 20px',
+    borderRadius: '12px',
+    border: `1px solid ${colors.lightBorder}`,
+    backgroundColor: colors.background,
+    fontFamily: "'Lexend', sans-serif",
+    fontSize: '1rem',
+    outline: 'none',
+    boxShadow: '0 4px 12px rgba(0,0,0,0.03)',
+  },
+  filterDrawer: {
+    position: 'absolute',
+    top: 'calc(100% + 10px)',
+    left: '-50px',
+    right: '-50px',
+    backgroundColor: colors.black,
+    borderRadius: '12px',
+    padding: '24px',
+    boxShadow: '0 10px 40px rgba(0,0,0,0.5)',
+    zIndex: 100,
+    border: `1px solid ${colors.blackBorder}`,
+    maxHeight: '450px',
+    overflowY: 'auto',
+  },
+  gridWrapper: {
+    flex: 1,
+    maxWidth: '1500px',
+    width: '100%',
+    margin: '0 auto',
+    padding: '20px 40px 40px 40px',
+    boxSizing: 'border-box',
+    overflowY: 'auto',
+  }
 };

@@ -20,6 +20,10 @@ model User {
   isAdmin      Boolean  @default(false)
   isAuthor     Boolean  @default(false)
 
+  age    Int    @default(21)
+  weight Float  @default(182.5)
+  height String @default("5'10\"")
+
   cal_Goal Int @default(2000)
   cal_Prog Int @default(0)
 
