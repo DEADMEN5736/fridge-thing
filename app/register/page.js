@@ -42,7 +42,7 @@ export default function RegisterPage() {
         return;
       }
 
-      router.push("/dashboard"); //temp change for demo
+      router.push("/onboarding"); //temp change for demo
     } catch (err) {
       setError("Network error. Please check your connection.");
     } finally {

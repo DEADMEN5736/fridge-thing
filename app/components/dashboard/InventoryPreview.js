@@ -1,8 +1,14 @@
 "use client";
 
 import React from "react";
+import { useRouter } from "next/navigation";
 
 export default function InventoryPreview({ items }) {
+  const router = useRouter();
+
+  const handleClick = () => {
+    router.push("/pantry");
+  }
   return (
     <section style={styles.sectionCard}>
       <div style={styles.sectionHeaderRow}>
@@ -19,7 +25,7 @@ export default function InventoryPreview({ items }) {
         ))}
       </div>
 
-      <button style={styles.primaryButtonFull}>Update Inventory</button>
+      <button style={styles.primaryButtonFull} onClick={handleClick}>Update Pantry</button>
     </section>
   );
 }

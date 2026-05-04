@@ -1,6 +1,7 @@
 import { NextRequest, NextResponse } from "next/server";
 import bcrypt from "bcryptjs";
 import { prisma } from "@/lib/prisma";
+import jwt from "jsonwebtoken";
 
 export async function POST(req: NextRequest) {
   try {
@@ -53,10 +54,32 @@ export async function POST(req: NextRequest) {
       },
     });
 
-    return NextResponse.json(
-      { message: "Account created successfully.", userId: user.id },
-      { status: 201 }
+    const token = jwt.sign(
+        {
+          userId: user.id,
+          email: user.email,
+          firstName: user.firstName
+        },
+        process.env.JWT_SECRET!,
+        { expiresIn: "1d" },
+    )
+
+
+    const response = NextResponse.json(
+        {message: "Account created successfully.", userId: user.id},
+        {status: 201}
     );
+
+    response.cookies.set("fridge_auth_token", token, {
+      httpOnly: true,
+      secure: process.env.NODE_ENV === "production",
+      sameSite: "lax",
+      path: "/",
+      maxAge: 60 * 60 * 24,
+    })
+
+    return response;
+
   } catch (error) {
     console.error("[register] error:", error);
     return NextResponse.json(

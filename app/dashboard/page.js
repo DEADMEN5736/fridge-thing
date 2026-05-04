@@ -11,6 +11,8 @@ import RecipeSuggestions from "../components/dashboard/RecipeSuggestions";
 import { getAuthUser } from "@/lib/auth";
 import { redirect } from "next/navigation";
 
+export const dynamic = "force-dynamic";
+
 export default async function DashboardPage() {
   //const router = useRouter(); removed temporarily since not compatible with the asnyc function auth
 
