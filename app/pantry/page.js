@@ -119,7 +119,7 @@ export default function Pantry() {
                 </h1>
 
                 <div style={sharedStyles.searchContainer}>
-                    <div style={{ position: "relative", width: "100%", maxWidth: "500px", margin: "0 auto" }}>
+                    <div style={{ position: "relative", width: "100%", maxWidth: "500px", margin: "0 auto", color: "#000000"}}>
                         <input
                             type="text"
                             placeholder="Search your ingredients..."
