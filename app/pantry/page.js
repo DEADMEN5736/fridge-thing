@@ -136,7 +136,7 @@ export default function Pantry() {
               color: colors.textSecondary,
             }}
           >
-            No ingredients found matching "{searchTerm}"
+            No ingredients found matching &quot;{searchTerm}&quot;
           </div>
         )}
       </div>

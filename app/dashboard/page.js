@@ -1,24 +1,22 @@
 import React from "react";
-//import { useRouter } from "next/navigation";
-import { Navbar } from "../components/Navbar";
+import { redirect } from "next/navigation";
 import DashboardHeader from "../components/dashboard/DashboardHeader";
 import MacroSummary from "../components/dashboard/MacroSummary";
 import InventoryPreview from "../components/dashboard/InventoryPreview";
-import QuickActions from "../components/dashboard/QuickActions";
 import RecipeSuggestions from "../components/dashboard/RecipeSuggestions";
-
-//These two imports are related to getting user info and such once logged in
+import styles from "./dashboard.module.css";
 import { getAuthUser } from "@/lib/auth";
-import { redirect } from "next/navigation";
+import {
+  dashboardInventoryItems,
+  dashboardRecipes,
+} from "../components/dashboard/dashboardContent";
 
 export const dynamic = "force-dynamic";
 
 export default async function DashboardPage() {
-  //const router = useRouter(); removed temporarily since not compatible with the asnyc function auth
-
   const user = await getAuthUser();
   if (!user) {
-    redirect("/login"); // Kick them out if not logged in
+    redirect("/login");
   }
 
   const macroData = [
@@ -28,71 +26,16 @@ export default async function DashboardPage() {
     { title: "Fats", current: user.fat_Prog, goal: user.fat_Goal, unit: "g" },
   ];
 
-  const inventoryItems = [
-    "Chicken Breast",
-    "Eggs",
-    "Greek Yogurt",
-    "Spinach",
-    "Brown Rice",
-    "Avocados",
-  ];
-
-  const recipes = [
-    {
-      title: "Chicken Rice Bowl",
-      description: "High-protein meal using chicken, brown rice, and spinach.",
-      match: "Uses 5 ingredients you already have",
-    },
-    {
-      title: "Spinach Omelet",
-      description: "Quick breakfast packed with protein and healthy fats.",
-      match: "Uses 3 ingredients you already have",
-    },
-    {
-      title: "Greek Yogurt Power Bowl",
-      description: "Fast snack with yogurt, fruit, and granola.",
-      match: "Uses 2 ingredients you already have",
-    },
-  ];
-
-  console.log(user.isAdmin);
-
   return (
-    <div style={styles.page}>
-      <Navbar />
+    <div className={styles.pageStack}>
+      <DashboardHeader username={user.firstName} />
 
-      <main style={styles.main}>
-        <DashboardHeader username={user.firstName} />
+      <MacroSummary macroData={macroData} />
 
-        <MacroSummary macroData={macroData} />
-
-        <div style={styles.twoColumnLayout}>
-          <InventoryPreview items={inventoryItems} />
-          <QuickActions />
-        </div>
-
-        <RecipeSuggestions recipes={recipes} />
-      </main>
+      <div className={styles.twoColumnLayout}>
+        <InventoryPreview items={dashboardInventoryItems} />
+        <RecipeSuggestions recipes={dashboardRecipes} />
+      </div>
     </div>
   );
 }
-
-const styles = {
-  page: {
-    minHeight: "100vh",
-    backgroundColor: "#f1f3f2",
-  },
-
-  main: {
-    maxWidth: "1180px",
-    margin: "0 auto",
-    padding: "48px 24px 64px",
-  },
-
-  twoColumnLayout: {
-    display: "grid",
-    gridTemplateColumns: "1fr 1fr",
-    gap: "24px",
-    marginBottom: "24px",
-  },
-};
