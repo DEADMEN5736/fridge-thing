@@ -99,7 +99,7 @@ export default function OnboardingPage() {
         <FormInput
           label="Height"
           type="text"
-          placeholder={"5' 11\""}
+          placeholder={"70in"}
           value={formData.height}
           onChange={(e) => handleChange('height', e.target.value)}
         ></FormInput>
