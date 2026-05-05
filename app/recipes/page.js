@@ -1,10 +1,11 @@
 "use client";
-import { useState, useMemo, useRef, useEffect } from "react";
-import { sharedStyles, colors } from "../styles";
+import { useState, useRef, useEffect } from "react";
+import { colors } from "../styles";
 import { Navbar } from "../components/Navbar";
 import { RecipeCard } from "../components/RecipeCard";
 import { PrimaryButton } from "../components/Buttons";
 import { useRouter } from "next/navigation";
+import { allRecipes, ingredientOptions } from "../data";
 
 export default function RecipeSearch() {
   const [selectedRecipe, setSelectedRecipe] = useState(null);
@@ -13,7 +14,6 @@ export default function RecipeSearch() {
   const [filters, setFilters] = useState({});
 
   const router = useRouter();
-
   const searchContainerRef = useRef(null);
 
   useEffect(() => {
@@ -28,57 +28,6 @@ export default function RecipeSearch() {
     document.addEventListener("mousedown", handleClickOutside);
     return () => document.removeEventListener("mousedown", handleClickOutside);
   }, []);
-
-  const allRecipes = useMemo(
-    () => [
-      {
-        id: 1,
-        title: "Carmel Apple Pie",
-        description: "Treat time.",
-        ingredients: ["Apple", "Caramel", "Milk", "Flour", "Butter"],
-        cal: 480,
-        p: 8,
-        c: 80,
-        f: 3.28,
-        time: 150,
-      },
-      {
-        id: 2,
-        title: "Citrus Salmon and Asparagus",
-        description: "Lemon garlic salmon.",
-        ingredients: ["Salmon", "Asparagus", "Lemon", "Butter", "Garlic"],
-        cal: 250,
-        p: 32,
-        c: 5.55,
-        f: 1.69,
-        time: 15,
-      },
-      {
-        id: 3,
-        title: "Feta-stuffed Hamburger",
-        description: "Mediterranean twist.",
-        ingredients: ["Beef", "Feta", "Onion", "Garlic", "Spinach"],
-        cal: 390,
-        p: 24,
-        c: 1.67,
-        f: 0.04,
-        time: 20,
-      },
-      {
-        id: 4,
-        title: "Five Hundred Cigarettes",
-        description: "A lot of tobacco.",
-        ingredients: ["Tobacco"],
-        p: 0,
-        c: 0,
-        f: 3,
-        time: 0,
-      },
-    ],
-    [],
-  );
-
-  const ingredientOptions = ["Beef", "Chicken", "Pork", "Tofu"];
 
   const handleFilterToggle = (ing) => {
     setFilters((prev) => {
@@ -278,7 +227,7 @@ export default function RecipeSearch() {
       </div>
 
       <div style={bottomBarStyle}>
-        <div>
+        <div style={{ height: "100%", display: "flex", alignItems: "center" }}>
           {selectedRecipe ? (
             <span>
               Selected:{" "}
@@ -290,19 +239,22 @@ export default function RecipeSearch() {
             <span style={{ opacity: 0.5 }}>Select a recipe to continue</span>
           )}
         </div>
-        <PrimaryButton
-          bgColor={selectedRecipe ? colors.primary : "#4a5a6a"}
-          padding="10px 50px"
-          width="auto"
-          onClick={() => {
-            if (selectedRecipe) {
-              router.push(`/recipes/${selectedRecipe}`);
-            }
-          }}
-          style={{ cursor: selectedRecipe ? "pointer" : "not-allowed" }}
-        >
-          Start Cooking
-        </PrimaryButton>
+
+        <div style={{ height: "100%", display: "flex", alignItems: "center" }}>
+          <PrimaryButton
+            bgColor={selectedRecipe ? colors.primary : "#4a5a6a"}
+            padding="10px 50px"
+            width="auto"
+            onClick={() => {
+              if (selectedRecipe) {
+                router.push(`/recipes/${selectedRecipe}`);
+              }
+            }}
+            style={{ cursor: selectedRecipe ? "pointer" : "not-allowed" }}
+          >
+            Start Cooking
+          </PrimaryButton>
+        </div>
       </div>
     </div>
   );
@@ -310,14 +262,15 @@ export default function RecipeSearch() {
 
 const bottomBarStyle = {
   width: "100vw",
-  height: "60px",
+  height: "80px",
   backgroundColor: "rgba(44, 62, 80, 0.95)",
   backdropFilter: "blur(12px)",
   borderTop: "1px solid rgba(255,255,255,0.1)",
   display: "flex",
   justifyContent: "space-between",
-  alignItems: "center",
+  alignItems: "stretch",
   padding: "0 60px",
   color: "white",
   flexShrink: 0,
+  zIndex: 1000,
 };
