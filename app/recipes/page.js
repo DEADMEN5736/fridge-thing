@@ -44,12 +44,15 @@ export default function RecipeSearch() {
     const matchesSearch = recipe.title
       .toLowerCase()
       .includes(searchTerm.toLowerCase());
-    const matchesIngredients = Object.entries(filters).every(([ing, state]) => {
-      const hasIng = recipe.ingredients?.some(
-        (i) => i.toLowerCase() === ing.toLowerCase(),
-      );
+
+    const matchesIngredients = Object.entries(filters).every(([filterIng, state]) => {
+      const hasIng = recipe.ingredients?.some((recipeIng) => {
+        const ingName = typeof recipeIng === "object" ? recipeIng.item : recipeIng;
+        return ingName.toLowerCase() === filterIng.toLowerCase();
+      });
       return state === true ? hasIng : !hasIng;
     });
+
     return matchesSearch && matchesIngredients;
   });
 
@@ -170,14 +173,14 @@ export default function RecipeSearch() {
                         backgroundColor: isInclude
                           ? "rgba(52, 199, 89, 0.2)"
                           : isExclude
-                            ? "rgba(255, 59, 48, 0.2)"
-                            : "#222",
+                          ? "rgba(255, 59, 48, 0.2)"
+                          : "#222",
                         border: `1px solid ${isInclude ? "#34c759" : isExclude ? "#ff3b30" : "#444"}`,
                         color: isInclude
                           ? "#34c759"
                           : isExclude
-                            ? "#ff3b30"
-                            : "#eee",
+                          ? "#ff3b30"
+                          : "#eee",
                       }}
                     >
                       {isInclude && <span>✓</span>}

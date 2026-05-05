@@ -1,10 +1,34 @@
-// data.js
 export const allRecipes = [
   {
     id: 1,
     title: "Carmel Apple Pie",
-    description: "Treat time.",
-    ingredients: ["Apple", "Caramel", "Milk", "Flour", "Butter"],
+    description: "Treat time.", // Short desc for cards
+    detailedDesc: "A decadent, warm treat featuring tart apples smothered in a rich, buttery caramel sauce, all encased in a flaky, golden-brown crust.", // Long desc for page
+    ingredients: [
+      { item: "Apple", amount: "4", unit: "large" },
+      { item: "Caramel", amount: "1/2", unit: "cup" },
+      { item: "Milk", amount: "2", unit: "tbsp" },
+      { item: "Flour", amount: "2", unit: "cups" },
+      { item: "Butter", amount: "1", unit: "cup" }
+    ],
+    steps: [
+      { text: "Core, peel, and slice the apples into even wedges." },
+      { text: "Prepare the pie crust by mixing flour and chilled butter until crumbly." },
+      { text: "Toss apples with caramel and milk before filling the crust." },
+      { text: "BOMBOCLATT." },
+      { text: "BOMBOCLATT." },
+      { text: "BOMBOCLATT." },
+      { text: "BOMBOCLATT." },
+      { text: "BOMBOCLATT." },
+      { text: "BOMBOCLATT." },
+      { text: "BOMBOCLATT." },
+      { text: "BOMBOCLATT." },
+      { text: "BOMBOCLATT." },
+      { text: "BOMBOCLATT." },
+      { text: "BOMBOCLATT." },
+      { text: "BOMBOCLATT." },
+      { text: "BOMBOCLATT." }
+    ],
     cal: 480,
     p: 8,
     c: 80,
@@ -233,4 +257,4 @@ export const allRecipes = [
   },
 ];
 
-export const ingredientOptions = ["Beef", "Chicken", "Pork", "Tofu"];
+export const ingredientOptions = ["Beef", "Chicken", "Pork", "Tofu", "Butter"];
