@@ -5,6 +5,8 @@ First, connect to a mongodb server, include a .env in the program base folder wi
 
 Second, run 'npx prisma generate' to initialize the database
 
+Note: New databases must be populated with information such as recipes and items
+
 ## Getting Started
 
 First, run the development server:
