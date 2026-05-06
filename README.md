@@ -1,5 +1,10 @@
 This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://nextjs.org/docs/app/api-reference/cli/create-next-app).
 
+## Pre run requirements
+First, connect to a mongodb server, include a .env in the program base folder with proper authentication and JWT secret token.
+
+Second, run 'npx prisma generate' to initialize the database
+
 ## Getting Started
 
 First, run the development server:
