@@ -45,12 +45,24 @@ export async function POST(req: NextRequest) {
     // --- Hash password & create user ---
     const passwordHash = await bcrypt.hash(password, 12);
 
+    const initialPantry = [
+      { itemName: "Whole Milk",    unit: "GAL",   quantity: 0 },
+      { itemName: "Large Eggs",    unit: "UNIT",  quantity: 0 },
+      { itemName: "Roma Tomatoes", unit: "UNIT",  quantity: 0 },
+      { itemName: "Ground Beef",   unit: "GRAMS", quantity: 0 },
+      { itemName: "Onions",        unit: "UNIT",  quantity: 0 },
+      { itemName: "Garlic",        unit: "BULB",  quantity: 0 },
+      { itemName: "Butter",        unit: "GRAMS", quantity: 0 },
+      { itemName: "Salt",          unit: "BOX",   quantity: 0 },
+    ];
+
     const user = await prisma.user.create({
       data: {
         firstName: firstName.trim(),
         lastName: lastName.trim(),
         email: email.toLowerCase().trim(),
         passwordHash,
+        userPantry: initialPantry,
       },
     });
 

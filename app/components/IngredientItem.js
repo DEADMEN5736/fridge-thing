@@ -4,6 +4,7 @@ import { colors } from "../styles";
 
 export const IngredientItem = ({ item, onUpdateQuantity, onManualEntry }) => {
   const [activeSide, setActiveSide] = useState(null);
+  const [hoveredSide, setHoveredSide] = useState(null);
 
   const handleMouseDown = (e) => {
     const rect = e.currentTarget.getBoundingClientRect();
@@ -19,11 +20,21 @@ export const IngredientItem = ({ item, onUpdateQuantity, onManualEntry }) => {
     }
   };
 
+  const handleMouseMove = (e) => {
+    const rect = e.currentTarget.getBoundingClientRect();
+    const x = e.clientX - rect.left;
+    setHoveredSide(x > rect.width / 2 ? "right" : "left");
+  };
+
   return (
     <div
       onMouseDown={handleMouseDown}
+      onMouseMove={handleMouseMove}
       onMouseUp={() => setActiveSide(null)}
-      onMouseLeave={() => setActiveSide(null)}
+      onMouseLeave={() => {
+        setActiveSide(null);
+        setHoveredSide(null);
+      }}
       style={{
         position: "relative",
         display: "flex",
@@ -36,8 +47,11 @@ export const IngredientItem = ({ item, onUpdateQuantity, onManualEntry }) => {
         overflow: "hidden",
         userSelect: "none",
         backgroundColor: "#ffffff",
-        boxShadow: "0 4px 12px rgba(0,0,0,0.03)",
-        transition: "transform 0.1s ease",
+        boxShadow: hoveredSide 
+          ? "0 8px 24px rgba(0,0,0,0.08)" 
+          : "0 4px 12px rgba(0,0,0,0.03)",
+        transition: "all 0.2s ease",
+        transform: activeSide ? "scale(0.98)" : "scale(1)",
       }}
     >
       <div
@@ -48,8 +62,8 @@ export const IngredientItem = ({ item, onUpdateQuantity, onManualEntry }) => {
           bottom: 0,
           width: "50%",
           backgroundColor: "#ff3b30",
-          opacity: activeSide === "left" ? 0.5 : 0,
-          transition: "opacity 0.05s ease",
+          opacity: activeSide === "left" ? 0.4 : hoveredSide === "left" ? 0.08 : 0,
+          transition: "opacity 0.15s ease",
           pointerEvents: "none",
           zIndex: 1,
         }}
@@ -63,8 +77,8 @@ export const IngredientItem = ({ item, onUpdateQuantity, onManualEntry }) => {
           bottom: 0,
           width: "50%",
           backgroundColor: "#34c759",
-          opacity: activeSide === "right" ? 0.5 : 0,
-          transition: "opacity 0.05s ease",
+          opacity: activeSide === "right" ? 0.4 : hoveredSide === "right" ? 0.08 : 0,
+          transition: "opacity 0.15s ease",
           pointerEvents: "none",
           zIndex: 1,
         }}
@@ -75,11 +89,12 @@ export const IngredientItem = ({ item, onUpdateQuantity, onManualEntry }) => {
           position: "absolute",
           left: "12px",
           top: "50%",
-          transform: "translateY(-50%)",
+          transform: `translateY(-50%) ${hoveredSide === "left" ? "scale(1.2)" : "scale(1)"}`,
           color: "#ff3b30",
           fontWeight: "bold",
           fontSize: "2.5rem",
-          opacity: 0.2,
+          opacity: hoveredSide === "left" ? 0.6 : 0.15,
+          transition: "all 0.2s ease",
           zIndex: 2,
         }}
       >
@@ -90,11 +105,12 @@ export const IngredientItem = ({ item, onUpdateQuantity, onManualEntry }) => {
           position: "absolute",
           right: "12px",
           top: "50%",
-          transform: "translateY(-50%)",
+          transform: `translateY(-50%) ${hoveredSide === "right" ? "scale(1.2)" : "scale(1)"}`,
           color: "#34c759",
           fontWeight: "bold",
           fontSize: "2.5rem",
-          opacity: 0.2,
+          opacity: hoveredSide === "right" ? 0.6 : 0.15,
+          transition: "all 0.2s ease",
           zIndex: 2,
         }}
       >
@@ -148,6 +164,7 @@ export const IngredientItem = ({ item, onUpdateQuantity, onManualEntry }) => {
             color: colors.secondary,
             outline: "none",
             pointerEvents: "auto",
+            transition: "background 0.2s ease",
           }}
         />
       </div>
