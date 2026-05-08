@@ -51,7 +51,7 @@ export default function MealRecorder({ user, recipe, view }) {
     }
 
     return (
-        <div style={{ position: "fixed", bottom: 0, width: "100%", height: "90px", background: "#2c3e50", display: "flex", padding: "0 60px", alignItems: "center", justifyContent: "space-between" }}>
+        <div style={{ position: "fixed", bottom: 0, width: "100%", height: "80px", background: "#2c3e50", display: "flex", padding: "0 30px", alignItems: "center", justifyContent: "space-between" }}>
             <div style={{ color: "white" }}>Total: {recipe.cal} Cal</div>
             <PrimaryButton onClick={handleRecord}>Record Meal</PrimaryButton>
         </div>

@@ -72,7 +72,7 @@ export default function RecipeClient({ user: initialUser, recipe, type }) {
     }
 
     return (
-        <div style={{ position: "fixed", bottom: 0, left: 0, width: "100%", minHeight: "90px", backgroundColor: "rgba(44, 62, 80, 0.95)", backdropFilter: "blur(12px)", color: "white", display: "flex", justifyContent: "space-between", alignItems: "center", padding: "10px 60px", zIndex: 1000 }}>
+        <div style={{ position: "fixed", bottom: 0, left: 0, width: "100%", minHeight: "80px", backgroundColor: "rgba(44, 62, 80, 0.95)", backdropFilter: "blur(12px)", color: "white", display: "flex", justifyContent: "space-between", alignItems: "center", padding: "10px 60px", zIndex: 1000 }}>
             <div>
                 <span style={{ fontSize: "1.1rem", fontWeight: "bold" }}>{recipe.cal} Calories</span>
                 <div style={{ width: "120px" }}><MacroBar macroKey="cal" amount={recipe.cal} height="4px" /></div>

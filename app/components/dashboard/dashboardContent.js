@@ -1,8 +1,9 @@
 export const primaryTabs = [
   { key: "dashboard", label: "Dashboard", shortLabel: "D", href: "/dashboard" },
-  { key: "accounts", label: "Accounts", shortLabel: "A", href: "/dashboard/accounts" },
-  { key: "meals", label: "Meals", shortLabel: "M", href: "/dashboard/meals" },
+  { key: "pantry", label: "Pantry", shortLabel: "P", href: "/pantry" },
+  { key: "recipes", label: "Recipes", shortLabel: "R", href: "/recipes" },
   { key: "nutrition", label: "Nutrition", shortLabel: "N", href: "/dashboard/nutrition" },
+  { key: "account", label: "Account", shortLabel: "A", href: "/dashboard/accounts" },
 ];
 
 export const dashboardMacroData = [
@@ -30,18 +31,18 @@ export const dashboardQuickActions = [
 
 export const dashboardRecipes = [
   {
-    title: "Chicken Rice Bowl",
-    description: "High-protein meal using chicken, brown rice, and spinach.",
+    title: "Caramel Apple Pie",
+    description: "A decadent, warm treat featuring tart apples.",
     match: "Uses 5 ingredients you already have",
   },
   {
-    title: "Spinach Omelet",
-    description: "Quick breakfast packed with protein and healthy fats.",
+    title: "Citrus Salmon and Asparagus",
+    description: "Lemon garlic salmon.",
     match: "Uses 3 ingredients you already have",
   },
   {
-    title: "Greek Yogurt Power Bowl",
-    description: "Fast snack with yogurt, fruit, and granola.",
+    title: "Feta-stuffed Hamburger",
+    description: "Mediterranean twist.",
     match: "Uses 2 ingredients you already have",
   },
 ];
