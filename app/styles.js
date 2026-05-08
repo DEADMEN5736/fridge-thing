@@ -1,5 +1,3 @@
-"use client";
-
 export const colors = {
   primary: '#2ecc71',      // Green
   secondary: '#2c3e50',    // Dark Blue/Gray
