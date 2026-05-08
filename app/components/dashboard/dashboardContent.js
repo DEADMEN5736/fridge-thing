@@ -12,14 +12,14 @@ export const dashboardMacroData = [
   { title: "Fats", current: 58, goal: 75, unit: "g" },
 ];
 
-export const dashboardInventoryItems = [
-  "Chicken Breast",
-  "Eggs",
-  "Greek Yogurt",
-  "Spinach",
-  "Brown Rice",
-  "Avocados",
-];
+// export const dashboardInventoryItems = [
+//   "Chicken Breast",
+//   "Eggs",
+//   "Greek Yogurt",
+//   "Spinach",
+//   "Brown Rice",
+//   "Avocados",
+// ];
 
 export const dashboardQuickActions = [
   "Add Groceries",
@@ -43,51 +43,6 @@ export const dashboardRecipes = [
     title: "Greek Yogurt Power Bowl",
     description: "Fast snack with yogurt, fruit, and granola.",
     match: "Uses 2 ingredients you already have",
-  },
-];
-
-export const accountStats = [
-  { label: "Profile completion", value: "92%" },
-  { label: "Weekly grocery budget", value: "$85" },
-  { label: "Meal prep time target", value: "25 min" },
-];
-
-export const nutritionGoals = [
-  {
-    title: "Macro goals",
-    description:
-      "2200 kcal, 170g protein, 240g carbs, and 75g fats to support a balanced high-protein plan.",
-    value: "Daily",
-  },
-  {
-    title: "Diet style",
-    description:
-      "Flexible high-protein meals that prioritize whole foods and easy ingredient swaps.",
-    value: "Lifestyle",
-  },
-  {
-    title: "Health focus",
-    description:
-      "Reduce food waste while staying consistent with nutritious meals and pantry-first planning.",
-    value: "Priority",
-  },
-];
-
-export const accountPreferences = [
-  {
-    title: "Account details",
-    description: "Antonio Ramirez, antonio@example.com, student-friendly meal planning profile.",
-    value: "Owner",
-  },
-  {
-    title: "Dietary preferences",
-    description: "Lean protein, simple breakfasts, fast lunches, and flexible dinner recipes.",
-    value: "Saved",
-  },
-  {
-    title: "Substitution rules",
-    description: "Suggest alternatives for missing ingredients before recommending a store run.",
-    value: "Enabled",
   },
 ];
 

@@ -20,9 +20,9 @@ model User {
   isAdmin      Boolean  @default(false)
   isAuthor     Boolean  @default(false)
 
-  age    Int    @default(21)
-  weight Float  @default(182.5)
-  height String @default("5'10\"")
+  age    Int   @default(21)
+  weight Float @default(182.5)
+  height Int   @default(70)
 
   cal_Goal Int @default(2000)
   cal_Prog Int @default(0)
@@ -36,12 +36,16 @@ model User {
   fat_Goal Int @default(75)
   fat_Prog Int @default(0)
 
+  weeklyBudget Int @default(100)
+  prepTimeGoal Int @default(30)
+
   userPantry PantryItem[]
 }
 
 type PantryItem {
-  itemId   String
-  quantity Int    @default(1)
+  itemName String
+  quantity Int    @default(0)
+  unit     String
 }
 
 model Items {
