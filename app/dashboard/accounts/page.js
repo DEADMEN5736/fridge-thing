@@ -35,7 +35,7 @@ export default async function AccountsPage() {
     }
 
     const accountStats = [
-        { label: "Profile completion", value: "" + getTotalProgress(user) + "%"},
+        { label: "Profile completion", value: "" + getTotalProgress(user).toFixed(2) + "%"},
         { label: "Weekly grocery budget", value: "$" + user.weeklyBudget },
         { label: "Meal prep time target", value: "" + user.prepTimeGoal + "min" },
     ];
