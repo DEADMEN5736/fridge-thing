@@ -4,6 +4,7 @@ import React from "react";
 import { useRouter } from "next/navigation";
 import DashboardSection from "./DashboardSection";
 import styles from "../../dashboard/dashboard.module.css";
+import { PrimaryButton, SecondaryButton } from "../Buttons";
 
 export default function InventoryPreview({ items }) {
   const router = useRouter();
@@ -24,10 +25,29 @@ export default function InventoryPreview({ items }) {
       </div>
 
       <div className={styles.inventoryActions}>
-        <button className={styles.buttonPrimary}>Add Ingredient</button>
-        <button className={styles.buttonSecondary} onClick={handleViewPantry}>
+        <PrimaryButton 
+          style={{ 
+            width: "100%", 
+            height: "55px", 
+            borderRadius: "10px",
+            fontWeight: "600"
+          }}
+        >
+          Add Ingredient
+        </PrimaryButton>
+        
+        <SecondaryButton 
+          onClick={handleViewPantry}
+          style={{ 
+            width: "100%", 
+            height: "55px", 
+            borderRadius: "10px",
+            fontWeight: "600",
+            marginTop: "0px"
+          }}
+        >
           View Pantry
-        </button>
+        </SecondaryButton>
       </div>
     </DashboardSection>
   );

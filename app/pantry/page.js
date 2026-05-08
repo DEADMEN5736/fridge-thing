@@ -1,7 +1,7 @@
 "use client";
 import { useState, useMemo, useEffect } from "react";
 import { sharedStyles, colors } from "../styles";
-import { Navbar } from "../components/Navbar";
+import DashboardNavbar from "../components/dashboard/DashboardSidebar"; 
 import { IngredientItem } from "../components/IngredientItem";
 
 export default function Pantry() {
@@ -9,11 +9,10 @@ export default function Pantry() {
     const [searchTerm, setSearchTerm] = useState("");
     const [loading, setLoading] = useState(true);
 
-    // 1. Load data from your API on mount
     useEffect(() => {
         async function loadData() {
             try {
-                const res = await fetch("/api/user"); // This calls the route we discussed earlier
+                const res = await fetch("/api/user");
                 const user = await res.json();
 
                 if (user && user.userPantry) {
@@ -48,7 +47,6 @@ export default function Pantry() {
 
     const handleUpdateQuantity = async (id, change) => {
         let updatedItem = null;
-
         setInventory((prev) =>
             prev.map((item) => {
                 if (item.id === id) {
@@ -74,7 +72,6 @@ export default function Pantry() {
     const handleManualEntry = async (id, value) => {
         const finalQuantity = value === "" ? 0 : parseInt(value, 10);
         const safeQuantity = isNaN(finalQuantity) ? 0 : Math.max(0, finalQuantity);
-
         let targetItemName = "";
 
         setInventory((prev) =>
@@ -89,7 +86,7 @@ export default function Pantry() {
 
         if (targetItemName) {
             try {
-                const response = await fetch("/api/user", {
+                await fetch("/api/user", {
                     method: "POST",
                     headers: { "Content-Type": "application/json" },
                     body: JSON.stringify({
@@ -97,53 +94,70 @@ export default function Pantry() {
                         newQuantity: Number(safeQuantity),
                     }),
                 });
-
-                if (!response.ok) {
-                    console.error("Server rejected the update");
-                }
             } catch (err) {
                 console.error("Network error saving to DB:", err);
             }
         }
     };
 
-    if (loading) return <div style={{ padding: "40px", color: colors.secondary }}>Loading your pantry...</div>;
+    if (loading) return <div style={{ padding: "40px", backgroundColor: "#f4f7f6", minHeight: "100vh" }}>Loading...</div>;
 
     return (
-        <div style={sharedStyles.dashboardWrapper}>
-            <Navbar />
+        <div style={{ minHeight: "100vh", backgroundColor: "#f4f7f6", padding: "20px 0", position: "relative" }}>
+            
+            <header style={{ width: "100%", padding: "0 20px", marginBottom: "20px" }}>
+                <DashboardNavbar />
+            </header>
 
-            <div style={{ padding: "40px 40px 20px 40px", textAlign: "center", flexShrink: 0 }}>
-                <h1 style={{ color: colors.secondary, fontSize: "2rem", fontWeight: "900", marginBottom: "20px", fontFamily: "'Lexend', sans-serif" }}>
-                    Pantry
-                </h1>
+            <main style={{ width: "100%", fontFamily: "'Lexend', sans-serif", paddingBottom: "120px" }}>
+                <div style={{ padding: "10px 40px 20px 40px", textAlign: "center" }}>
+                    <h1 style={{ color: colors.secondary, fontSize: "2.2rem", fontWeight: "900", marginBottom: "25px" }}>
+                        Pantry
+                    </h1>
 
-                <div style={sharedStyles.searchContainer}>
-                    <div style={{ position: "relative", width: "100%", maxWidth: "500px", margin: "0 auto", color: "#000000"}}>
-                        <input
-                            type="text"
-                            placeholder="Search your ingredients..."
-                            value={searchTerm}
-                            onChange={(e) => setSearchTerm(e.target.value)}
-                            style={sharedStyles.searchBar}
-                        />
+                    <div style={{ display: "flex", justifyContent: "center", width: "100%" }}>
+                        <div style={{ position: "relative", width: "100%", maxWidth: "500px" }}>
+                            <input
+                                type="text"
+                                placeholder="Search your ingredients..."
+                                value={searchTerm}
+                                onChange={(e) => setSearchTerm(e.target.value)}
+                                style={{
+                                    width: "100%",
+                                    padding: "14px 20px",
+                                    borderRadius: "12px",
+                                    border: "1px solid #dde6e2",
+                                    backgroundColor: "white",
+                                    fontSize: "1rem",
+                                    outline: "none",
+                                    boxShadow: "0 4px 12px rgba(0,0,0,0.03)",
+                                    color: colors.black
+                                }}
+                            />
+                        </div>
                     </div>
                 </div>
-            </div>
 
-            <div style={sharedStyles.gridWrapper}>
-                <div style={{ display: "grid", gridTemplateColumns: "repeat(4, 1fr)", gap: "20px", width: "100%" }}>
-                    {filteredInventory.map((item) => (
-                        <IngredientItem
-                            key={item.id}
-                            item={item}
-                            onUpdateQuantity={handleUpdateQuantity}
-                            onManualEntry={handleManualEntry}
-                        />
-                    ))}
+                <div style={{ maxWidth: "1500px", margin: "0 auto", padding: "20px 40px" }}>
+                    <div style={{ 
+                        display: "grid", 
+                        gridTemplateColumns: "repeat(auto-fill, minmax(280px, 1fr))", 
+                        gap: "25px", 
+                        width: "100%" 
+                    }}>
+                        {filteredInventory.map((item) => (
+                            <IngredientItem
+                                key={item.id}
+                                item={item}
+                                onUpdateQuantity={handleUpdateQuantity}
+                                onManualEntry={handleManualEntry}
+                            />
+                        ))}
+                    </div>
                 </div>
-            </div>
+            </main>
 
+            
             <div style={bottomSummaryStyle}>
                 <div>
                     Pantry: <strong>{inventory.filter((i) => i.quantity > 0).length} Items In-Stock</strong>
@@ -154,6 +168,9 @@ export default function Pantry() {
 }
 
 const bottomSummaryStyle = {
+    position: "fixed",
+    bottom: 0,
+    left: 0,
     width: "100vw",
     height: "50px",
     backgroundColor: colors.background,
@@ -165,4 +182,5 @@ const bottomSummaryStyle = {
     color: colors.secondary,
     fontSize: "0.9rem",
     fontFamily: "'Lexend', sans-serif",
+    zIndex: 1000,
 };
