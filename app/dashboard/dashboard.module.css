@@ -6,20 +6,145 @@
 .layout {
   width: 100%;
   padding: 24px;
-  display: grid;
-  grid-template-columns: 300px minmax(0, 1fr);
+  display: flex;
+  flex-direction: column;
   gap: 24px;
-  align-items: start;
 }
 
-.sidebarColumn {
+.navbar {
+  width: 100%;
+  background-color: #ffffff;
+  border-radius: 24px;
+  border: 1px solid #e1e8e5;
+  box-shadow: 0 10px 30px rgba(36, 59, 90, 0.05);
+  padding: 12px 28px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
   position: sticky;
-  top: 24px;
-  height: calc(100vh - 48px);
+  top: 16px;
+  z-index: 1000;
+}
+
+.navLeft {
+  display: flex;
+  align-items: center;
+}
+
+.brandBlock {
+  display: flex;
+  flex-direction: column;
+}
+
+.brandEyebrow {
+  margin: 0;
+  font-size: 0.65rem;
+  font-weight: 700;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  color: #38c96b;
+}
+
+.brandTitle {
+  margin: 0;
+  font-size: 1.4rem;
+  line-height: 1.1;
+  font-weight: 800;
+  color: #243b5a;
+}
+
+.brandText {
+  margin: 0;
+  color: #6f7d8c;
+  line-height: 1.6;
+  font-size: 0.96rem;
+}
+
+.navCenter {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+
+.navLink {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  text-decoration: none;
+  color: #5f6f80;
+  font-weight: 700;
+  font-size: 0.95rem;
+  padding: 10px 16px;
+  border-radius: 14px;
+  transition: all 0.2s ease;
+}
+
+.navLinkActive {
+  background-color: #eef7f1;
+  color: #243b5a;
+}
+
+.navIcon {
+  width: 32px;
+  height: 32px;
+  border-radius: 10px;
+  background-color: #f3f6f5;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  color: #38c96b;
+  font-weight: 800;
+  font-size: 0.85rem;
+}
+
+.navIconActive {
+  background-color: #38c96b;
+  color: #ffffff;
+}
+
+.navRight {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+}
+
+.settingsIconButton {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  background-color: #f8faf9;
+  border: 1px solid #e1e8e5;
+  padding: 10px 16px;
+  border-radius: 14px;
+  color: #243b5a;
+  font-weight: 700;
+  font-size: 0.9rem;
+  cursor: pointer;
+}
+
+.settingsDot {
+  width: 8px;
+  height: 8px;
+  border-radius: 50%;
+  background-color: #38c96b;
+  box-shadow: 0 0 0 3px #e8f7ee;
+}
+
+.logoutTextButton {
+  background-color: #243b5a;
+  color: #ffffff;
+  border: none;
+  padding: 10px 20px;
+  border-radius: 14px;
+  font-weight: 700;
+  font-size: 0.9rem;
+  cursor: pointer;
 }
 
 .contentColumn {
-  min-width: 0;
+  width: 100%;
+  max-width: 1400px;
+  margin: 0 auto;
 }
 
 .main {
@@ -382,152 +507,18 @@
   font-size: 0.92rem;
 }
 
-.sidebar {
-  width: 100%;
-  height: 100%;
-  border-radius: 28px;
-  background-color: #ffffff;
-  border: 1px solid #e1e8e5;
-  box-shadow: 0 18px 40px rgba(36, 59, 90, 0.08);
-  padding: 28px 22px;
-  display: flex;
-  flex-direction: column;
-  justify-content: space-between;
-  gap: 28px;
-}
-
-.sidebarTop {
-  display: flex;
-  flex-direction: column;
-}
-
-.brandBlock {
-  padding: 8px 6px 24px;
-}
-
-.brandEyebrow {
-  margin: 0;
-  font-size: 0.8rem;
-  font-weight: 700;
-  letter-spacing: 0.08em;
-  text-transform: uppercase;
-  color: #38c96b;
-}
-
-.brandTitle {
-  margin-top: 10px;
-  margin-bottom: 8px;
-  font-size: 2rem;
-  line-height: 1;
-  font-weight: 800;
-  color: #243b5a;
-}
-
-.brandText {
-  margin: 0;
-  color: #6f7d8c;
-  line-height: 1.6;
-  font-size: 0.96rem;
-}
-
-.navList {
-  display: flex;
-  flex-direction: column;
-  gap: 10px;
-}
-
-.navButton {
-  display: flex;
-  align-items: center;
-  gap: 14px;
-  width: 100%;
-  border: 1px solid transparent;
-  background-color: transparent;
-  color: #5f6f80;
-  border-radius: 18px;
-  padding: 14px 16px;
-  font-weight: 700;
-  font-size: 1rem;
-  cursor: pointer;
-  text-align: left;
-  text-decoration: none;
-}
-
-.navButtonActive {
-  background-color: #eef7f1;
-  color: #243b5a;
-  border-color: #d7eee0;
-}
-
-.iconBadge {
-  width: 38px;
-  height: 38px;
-  border-radius: 12px;
-  background-color: #f3f6f5;
-  display: inline-flex;
-  align-items: center;
-  justify-content: center;
-  color: #38c96b;
-  font-weight: 800;
-  font-size: 0.95rem;
-  flex-shrink: 0;
-}
-
-.iconBadgeActive {
-  background-color: #38c96b;
-  color: #ffffff;
-}
-
-.bottomSection {
-  display: flex;
-  flex-direction: column;
-  gap: 12px;
-}
-
-.settingsButton {
-  width: 100%;
-  display: flex;
-  align-items: center;
-  gap: 12px;
-  background-color: #f8faf9;
-  color: #243b5a;
-  border: 1px solid #e1e8e5;
-  border-radius: 18px;
-  padding: 14px 16px;
-  font-weight: 700;
-  font-size: 0.98rem;
-  cursor: pointer;
-}
-
-.settingsDot {
-  width: 12px;
-  height: 12px;
-  border-radius: 50%;
-  background-color: #38c96b;
-  box-shadow: 0 0 0 4px #e8f7ee;
-  flex-shrink: 0;
-}
-
-.logoutButton {
-  width: 100%;
-  border: none;
-  background-color: #243b5a;
-  color: #ffffff;
-  border-radius: 18px;
-  padding: 14px 16px;
-  font-weight: 700;
-  font-size: 0.98rem;
-  cursor: pointer;
-}
-
 @media (max-width: 1080px) {
-  .layout {
-    grid-template-columns: 1fr;
+  .navbar {
+    flex-direction: column;
+    gap: 16px;
+    position: static;
   }
 
-  .sidebarColumn {
-    position: static;
-    height: auto;
+  .navCenter {
+    width: 100%;
+    overflow-x: auto;
+    justify-content: flex-start;
+    padding-bottom: 8px;
   }
 
   .threeColumnLayout,
